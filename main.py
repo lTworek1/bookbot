@@ -23,17 +23,31 @@ def main():
 				except:
 					charC = 0
 				
-				charC += 1	
-				charCount.update({char:charC}
-) 
-		print(f'In this file is {countW} words')
-		print('Characters Count:')
-		printStr = ""
-		for char in sorted(charCount):
-			countC = charCount[char]
-			printStr = f'{printStr}["{char}"]: {countC}; '
+				charC += 1
+				if char.isalpha():	
+					charCount.update({char:charC}) 
 		
-		print(printStr)
+
+		listOfChar = []			
+		for char in charCount:
+			count = charCount[char]
+			charDict = {"char": char, "count":count}
+			listOfChar.append(charDict)
+ 
+		def sort_on(dict):
+			return dict["count"]
+		
+		listOfChar.sort(reverse=True, key=sort_on)
+
+		print(f'--- Begin report of {filePath} ---')
+		print(f'{countW} words found in the document')
+		print('')
+		for charDict in listOfChar:
+			char = charDict["char"]
+			countC = charDict["count"]
+			print(f"The '{char}' character was found {countC} times")
+
+		print('--- End report ---')
 
 
 main()
