@@ -1,4 +1,8 @@
 import sys
+
+def sort_on(dict):
+			return dict["count"]
+
 def main():
 	try:
 		filePath = sys.argv[1]
@@ -7,7 +11,6 @@ def main():
 	
 	with open(filePath) as f:
 		file_contents = f.read()
-		# print(file_contents)
 
 		words = file_contents.split()
 		countW = 0
@@ -27,16 +30,12 @@ def main():
 				if char.isalpha():	
 					charCount.update({char:charC}) 
 		
-
 		listOfChar = []			
 		for char in charCount:
 			count = charCount[char]
 			charDict = {"char": char, "count":count}
 			listOfChar.append(charDict)
- 
-		def sort_on(dict):
-			return dict["count"]
-		
+ 	
 		listOfChar.sort(reverse=True, key=sort_on)
 
 		print(f'--- Begin report of {filePath} ---')
